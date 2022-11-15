@@ -30,27 +30,34 @@
                         <th>Nama</th>
                         <th>Kondisi</th>
                         <th>Stok</th>
+                        <th>Action</th>
                     </tr>
                     </thead>
                     <tbody class="table-border-bottom-0">
-                        @php
-                            $no = 1;
-                        @endphp
-                        @foreach ($barang as $brg)
-                        <tr>
-                            <td>{{ $no++ }}</td>
-                            <td><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong>{{ $brg->kode_barang }}</strong></td>
-                            <td>{{ $brg->transaksi->kode_trans }}</td>
-                            <td>{{ $brg->jenis->jenis }}</td>
-                            <td>{{ $brg->nama }}</td>
-                            <td><span class="badge bg-label-primary me-1">{{ $brg->kondisi }}</span></td>
-                            <td>{{ $brg->stok }}</td>
-                        </tr>
-                        @endforeach
-                    </tbody>
-                </table>
+                            @php
+                                $no = 1;
+                            @endphp
+                            @foreach ($barang as $brg)
+                            <tr>
+                                <td>{{ $no++ }}</td>
+                                <td><i class="fab fa-lg me-3"></i> <strong>{{ $brg->kode_barang }}</strong></td>
+                                <td>{{ $brg->transaksi->kode_trans }}</td>
+                                <td>{{ $brg->jenis->jenis }}</td>
+                                <td>{{ $brg->nama }}</td>
+                                <td><span class="badge bg-label-primary me-1">{{ $brg->kondisi }}</span></td>
+                                <td>{{ $brg->stok }}</td>
+                                <td>
+                                    <a class="btn btn-info btn-sm"
+                                    href=" {{ route('barang.show',$brg->id) }}">
+                                        Detail
+                                    </a>
+                                </td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
                 </div>
-        </div>
+            </div>
         <!--/ Basic Bootstrap Table -->
         </div>
     </div>
