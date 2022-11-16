@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Barang;
 use App\Models\Jenis;
 use App\Models\Transaksi;
+use Illuminate\Support\Facades\DB;
 
 class BarangController extends Controller
 {
@@ -74,9 +75,12 @@ class BarangController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Barang $barang)
     {
-        //
+        $arrTransaksi = Transaksi::all();
+        $arrJenis = Jenis::all();
+
+        return view('barang.formEdit',compact('barang','arrTransaksi','arrJenis'));
     }
 
     /**
@@ -88,7 +92,27 @@ class BarangController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'kode_barang' => 'required',
+            'transaksi_id' => 'required|integer',
+            'jenis_barang_id' => 'required|integer',
+            'nama' => 'required',
+            'kondisi' => 'required|string',
+            'stok' => 'required|integer'
+        ]);
+
+        // update data barang
+        DB::table('barang')->where('id',$id)->update([
+            'kode_barang' => $request->kode_barang,
+            'transaksi_id' => $request->transaksi_id,
+            'jenis_barang_id' => $request->jenis_barang_id,
+            'nama' => $request->nama,
+            'kondisi' => $request->kondisi,
+            'stok' => $request->stok,
+        ]);
+
+        return redirect('/barang'.'/'.$id)
+                        ->with('success','Data barang berhasil diubah');
     }
 
     /**
@@ -99,6 +123,9 @@ class BarangController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $brg = Barang::find($id);
+        Barang::where('id',$id)->delete();
+        return redirect()->route('barang.index')
+                        ->with('success','Barang berhasil dihapus');
     }
 }

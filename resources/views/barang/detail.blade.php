@@ -6,12 +6,18 @@
         <div class="col-md-6 col-lg-4">
             <div class="card text-left mb-3">
               <div class="card-body">
+                @if ($message = Session::get('success'))
+                    <div class="alert alert-success">
+                        <p>{{ $message }}</p>
+                    </div>
+                @endif
                 <h5 class="card-title">Nama Barang  : <b>{{ $brg->nama }}</b></h5>
                 <p class="card-text">Kode Barang    : <b>{{ $brg->kode_barang }}</b> </p>
                 <p class="card-text">Kode Transaksi : <b>{{ $brg->transaksi->kode_trans }}</b></p>
                 <p class="card-text">Jenis Barang   : <b>{{ $brg->jenis->jenis }}</b></p>
                 <p class="card-text">Kondisi Barang : <b>{{ $brg->kondisi }}</b> </p>
                 <p class="card-text">Stok Barang    : <b>{{ $brg->stok }}</b></p>
+                <a class="btn btn-md btn-primary" href="{{ route('barang.index') }} ">Back</a>
               </div>
             </div>
         </div>
