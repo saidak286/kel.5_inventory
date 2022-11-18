@@ -99,6 +99,7 @@
 
     <!-- Page JS -->
     <script src="{{ asset('admin/assets/js/dashboards-analytics.js') }}"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js"></script>
 
     <!-- Place this tag in your head or just before your close body tag. -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>

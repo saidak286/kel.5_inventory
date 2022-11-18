@@ -3,7 +3,6 @@
 @section('content')
 <div class="content-wrapper">
     <div class="container-xxl flex-grow-1 container-p-y">
-        <div class="">
             <!-- Basic Bootstrap Table -->
             <div class="card">
                 <div class="container mt-3">
@@ -90,7 +89,6 @@
                 </div>
             </div>
         <!--/ Basic Bootstrap Table -->
-        </div>
     </div>
 </div>
 

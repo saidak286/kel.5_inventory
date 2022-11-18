@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\BarangController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\JenisController;
 use App\Http\Controllers\TransaksiController;
 use Illuminate\Support\Facades\Route;
@@ -60,9 +61,9 @@ Route::get('/signup', function () {
 });
 
 //---------------routing admin page--------------
-Route::get('/administrator', function () {
-    return view('admin.home');
-});
+// Route::get('/administrator', function () {
+//     return view('admin.home');
+// });
 
 //---------------routing Controllers--------------
 
@@ -72,3 +73,4 @@ Route::resource('transaksi',TransaksiController::class);
 Route::get('generate-pdf',[BarangController::class,'generatePDF']);
 Route::get('barang-pdf',[BarangController::class,'barangPDF']);
 Route::get('barang-excel',[BarangController::class,'barangExcel']);
+Route::get('dashboard',[DashboardController::class,'index']);
