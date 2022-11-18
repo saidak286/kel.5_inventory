@@ -106,14 +106,14 @@
         </li>
         <!-- Tables -->
         <li class="menu-item">
-            <a href="tables-basic.html" class="menu-link">
+            <a href="{{ route('pegawai.index') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-table"></i>
                 <div data-i18n="Tables">Pegawai</div>
             </a>
         </li>
         <!-- Tables -->
         <li class="menu-item">
-            <a href="tables-basic.html" class="menu-link">
+            <a href="{{ route('jabatan.index') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-table"></i>
                 <div data-i18n="Tables">Jabatan</div>
             </a>

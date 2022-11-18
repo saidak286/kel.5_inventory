@@ -2,8 +2,10 @@
 
 use App\Http\Controllers\BarangController;
 use App\Http\Controllers\JenisController;
+use App\Http\Controllers\PegawaiController;
 use App\Http\Controllers\TransaksiController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\JabatanController;
 
 /*
 |--------------------------------------------------------------------------
@@ -64,8 +66,14 @@ Route::get('/administrator', function () {
     return view('admin.home');
 });
 
+Route::get('/admin/index', function () {
+    return view('admin.home');
+});
+
 //---------------routing Controllers--------------
 
 Route::resource('barang',BarangController::class);
 Route::resource('jenis',JenisController::class);
 Route::resource('transaksi',TransaksiController::class);
+Route::resource('jabatan', JabatanController::class);
+Route::resource('pegawai', PegawaiController::class);

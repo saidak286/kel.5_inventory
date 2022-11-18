@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Jabatan;
+use App\Models\Pegawai;
 use Illuminate\Http\Request;
-use App\Models\Barang;
-use App\Models\Jenis;
-use App\Models\Transaksi;
 
-class BarangController extends Controller
+class PegawaiController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,8 +15,9 @@ class BarangController extends Controller
      */
     public function index()
     {
-        $barang = Barang::all();
-        return view('barang.index',compact('barang'));
+        //
+        $pegawai = Pegawai::all();
+        return view('pegawai.index', compact('pegawai'));
     }
 
     /**
@@ -27,10 +27,13 @@ class BarangController extends Controller
      */
     public function create()
     {
-        $arrTransaksi = Transaksi::all();
-        $arrJenis = Jenis::all();
+        //
+        $ar_Pegawai = Pegawai::all();
+        $ar_Jabatan = Jabatan::all();
+        $ar_gender = ['L', 'P'];
 
-        return view('barang.form',compact('arrTransaksi','arrJenis'));
+        return view('pegawai.form', compact('ar_jabatan','ar_divisi','ar_gender'));
+        
     }
 
     /**
@@ -41,19 +44,21 @@ class BarangController extends Controller
      */
     public function store(Request $request)
     {
+        //
         $request->validate([
-            'kode_barang' => 'required',
-            'transaksi_id' => 'required|integer',
-            'jenis_barang_id' => 'required|integer',
-            'nama' => 'required',
-            'kondisi' => 'required|string',
-            'stok' => 'required|integer'
-        ]);
-        
-        Barang::create($request->all());
+            'nip' => 'required|unique:pegawai|max:3',
+            'name' => 'required|max:45',
+            'jabatan_id' => 'required|integer',
+            'jabatan_id' => 'required|integer',
+            'gender' => 'required',
+            'tmp_lahir' => 'required',
+            'tgl_lahir' => 'required',
+            'alamat' => 'required',
+            'telepon' => 'required',
+            'foto' => 'required'
+        ]
 
-        return redirect()->route('barang.index')
-                            ->with('success','Barang Sukes Ditambah!!');
+        )
     }
 
     /**

@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Jabatan;
+use App\Models\Pegawai;
 use Illuminate\Http\Request;
-use App\Models\Barang;
-use App\Models\Jenis;
-use App\Models\Transaksi;
 
-class BarangController extends Controller
+class JabatanController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,8 +15,9 @@ class BarangController extends Controller
      */
     public function index()
     {
-        $barang = Barang::all();
-        return view('barang.index',compact('barang'));
+        //
+        $jabatan = Jabatan::all();
+        return view('jabatan.index', compact('jabatan'));
     }
 
     /**
@@ -27,10 +27,8 @@ class BarangController extends Controller
      */
     public function create()
     {
-        $arrTransaksi = Transaksi::all();
-        $arrJenis = Jenis::all();
-
-        return view('barang.form',compact('arrTransaksi','arrJenis'));
+        //
+        
     }
 
     /**
@@ -41,19 +39,7 @@ class BarangController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'kode_barang' => 'required',
-            'transaksi_id' => 'required|integer',
-            'jenis_barang_id' => 'required|integer',
-            'nama' => 'required',
-            'kondisi' => 'required|string',
-            'stok' => 'required|integer'
-        ]);
-        
-        Barang::create($request->all());
-
-        return redirect()->route('barang.index')
-                            ->with('success','Barang Sukes Ditambah!!');
+        //
     }
 
     /**
@@ -65,6 +51,8 @@ class BarangController extends Controller
     public function show($id)
     {
         //
+        $row= Pegawai::find($id);
+        return view('pegawai.detail',compact('row'));
     }
 
     /**

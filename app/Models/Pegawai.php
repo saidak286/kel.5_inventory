@@ -18,9 +18,10 @@ class Pegawai extends Model
         'tgl_lahir',
         'alamat',
         'telepon',
+        'foto'
     ];
 
-    public function transaksi() {
-        return $this->hasOne(Transaksi::class);
+    public function pegawai() {
+        return $this->hasOne(Pegawai::class);
     }
 }
