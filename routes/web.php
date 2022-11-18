@@ -69,3 +69,6 @@ Route::get('/administrator', function () {
 Route::resource('barang',BarangController::class);
 Route::resource('jenis',JenisController::class);
 Route::resource('transaksi',TransaksiController::class);
+Route::get('generate-pdf',[BarangController::class,'generatePDF']);
+Route::get('barang-pdf',[BarangController::class,'barangPDF']);
+Route::get('barang-excel',[BarangController::class,'barangExcel']);

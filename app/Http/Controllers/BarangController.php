@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\BarangExport;
 use Illuminate\Http\Request;
 use App\Models\Barang;
 use App\Models\Jenis;
 use App\Models\Transaksi;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Facades\DB;
+use Maatwebsite\Excel\Facades\Excel;
 
 class BarangController extends Controller
 {
@@ -123,9 +126,33 @@ class BarangController extends Controller
      */
     public function destroy($id)
     {
-        $brg = Barang::find($id);
         Barang::where('id',$id)->delete();
         return redirect()->route('barang.index')
                         ->with('success','Barang berhasil dihapus');
+    }
+
+    public function generatePDF(){
+
+        $data = [
+            'title' => 'Penggunaan Extensions PDF',
+            'date' => date('m/d/Y'),
+            'isi' => 'Menggunakan Pustaka barryvdh/laravel-dompdf'
+        ];
+
+        $pdf = PDF::loadView('barang.myPDF', $data);
+
+        return $pdf->download('test_download.pdf');
+    }
+
+    public function barangPDF(){
+
+        $barang = Barang::all();
+        $pdf = PDF::loadView('barang.barangPDF', ['barang'=>$barang]);
+
+        return $pdf->download('data_barang.pdf');
+    }
+
+    public function barangExcel(){
+        return Excel::download(new BarangExport,'data_barang.xlsx');
     }
 }
