@@ -10,6 +10,7 @@ use App\Models\Transaksi;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Facades\DB;
 use Maatwebsite\Excel\Facades\Excel;
+use Illuminate\Console\View\Components\Alert;
 
 class BarangController extends Controller
 {
@@ -129,6 +130,12 @@ class BarangController extends Controller
         Barang::where('id',$id)->delete();
         return redirect()->route('barang.index')
                         ->with('success','Barang berhasil dihapus');
+    }
+
+    public function delete($id)
+    {
+        Barang::find($id)->delete();
+        return back();
     }
 
     public function generatePDF(){

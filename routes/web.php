@@ -68,6 +68,7 @@ Route::get('/signup', function () {
 //---------------routing Controllers--------------
 
 Route::resource('barang',BarangController::class);
+Route::delete('barang/{id}',[BarangController::class,'delete'])->name('barang.delete');
 Route::resource('jenis',JenisController::class);
 Route::resource('transaksi',TransaksiController::class);
 Route::get('generate-pdf',[BarangController::class,'generatePDF']);
